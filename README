@@ -1,4 +1,33 @@
-This is your new Play 2.0 application
+anormity (ANORM-Entity) - a bytecode manipulation of POJOs for use with ANORM.
 =====================================
 
-This file will be packaged with your application, when using `play dist`. 
+Why Anormity?
+
+ - ANORM is great, but doesn't immediately solve problem of impedence mismatch
+ - simply pushes the grunt work of mapping to entities to implementor.
+ - typed template parameters means one or more of the following
+   - queries cannot be too complex, to map to entities
+   - complex queries can be accomodated but at the cost of more complex entities
+   - directly get information from queried resultsets/streams, but lose type-safety in templates
+
+Why use Anormity?
+
+ - Anormity is a compromise of the above: simplified entities, compile-time safety 
+     of field access, run-time safety of field value access
+ - Anormity hooks into your standard POJO classes (only requires a single annotation @anormity)
+ - Follows standard conventions for mutator and accessor methods
+ - Throws exceptions when accessing field with no value, and yet accomodates null values.
+
+Benefits: 
+
+ - continue to use your existing entity model. No need to bend over backwards to get the most 
+     out of ANORM
+ - continue to get type-safety in all other layers of your application.
+ - get run-time errors when you try to access fields which have not been set. Could also be 
+     used as a form of validation.
+
+How it works?
+ - looks for fields, and their associated accessor and mutators.
+ - uses Javassist to add additional code to methods, and tracks status of fields.
+
+Examples To Come
