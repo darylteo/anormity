@@ -1,0 +1,10 @@
+.*
+!.gitignore
+
+bin
+dist
+tmp
+logs
+target
+project/project
+project/target
